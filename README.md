@@ -13,36 +13,7 @@ Ensure you have the following installed:
 - **Ollama**
 - **Streamlit**
 
-## **Step 1: Install Dependencies**
-
-Before proceeding, install all required dependencies:
-```sh
-pip install -r requirements.txt
-```
-
----
-
-## **Step 2: Set Up PostgreSQL Database**
-
-Before running any services, create a **PostgreSQL** database.
-
-1. Open **psql**:
-   ```sh
-   psql -U postgres
-   ```
-2. Create a new database:
-   ```sql
-   CREATE DATABASE deepseek_db;
-   ```
-3. Connect to the database:
-   ```sql
-   \c deepseek_db;
-   ```
-4. Create necessary tables (refer to the `schema.sql` file if available).
-
----
-
-## **Step 3: Activate Virtual Environment**
+## **Step 1: Activate Virtual Environment**
 
 Before running any commands, ensure you are in a virtual environment.
 
@@ -56,6 +27,33 @@ Before running any commands, ensure you are in a virtual environment.
   ```
 
 ---
+
+## **Step 2: Install Dependencies**
+
+Before proceeding, install all required dependencies (In a virtual env):
+```sh
+pip install -r requirements.txt
+```
+
+---
+
+## **Step 3: Set Up PostgreSQL Database**
+
+Before running any services, create a **PostgreSQL** database.
+(Or your anyone of your choice but do make the required changes to the code)
+
+1. Open **psql**:
+   ```sh
+   psql -U postgres
+   ```
+2. Create a new database:
+   ```sql
+   CREATE DATABASE DBName;
+   ```
+3. Create necessary tables (refer to the `schema.sql` file if available).
+
+---
+
 
 ## **Step 4: Start Backend Server**
 
@@ -72,14 +70,6 @@ In **Terminal 2**, run:
 ```sh
 ollama serve
 ```
-If the port is occupied, kill the process and restart:
-```sh
-sudo pkill ollama   # (Linux/macOS)
-```
-To check which process is using the port:
-```sh
-lsof -i :11434
-```
 
 ---
 
@@ -93,6 +83,7 @@ python deepseek_server.py
 ---
 
 ## **Step 7: Start Streamlit Frontend**
+Switch to deepseek_backend
 
 In **Terminal 4**, run:
 ```sh
