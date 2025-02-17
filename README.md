@@ -50,7 +50,7 @@ Before running any services, create a **PostgreSQL** database.
    ```sql
    CREATE DATABASE DBName;
    ```
-3. Create necessary tables (refer to the `schema.sql` file if available).
+3. Create necessary tables (refer to the `schema.sql` To be included).
 
 ---
 
