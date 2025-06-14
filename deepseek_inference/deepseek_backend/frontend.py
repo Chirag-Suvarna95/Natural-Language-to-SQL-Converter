@@ -1,11 +1,10 @@
-# frontend.py
 import streamlit as st
 import requests
 import json
 from datetime import datetime
 
 # Configuration
-BACKEND_URL = "http://localhost:8001"  
+BACKEND_URL = "http://localhost:8001"
 
 # Initialize session state
 if "chat_history" not in st.session_state:
@@ -93,11 +92,8 @@ def main():
                     "timestamp": datetime.now().isoformat()
                 })
 
-                # Display latest response
-                latest = st.session_state.chat_history[-1]
-                with st.chat_message("assistant"):
-                    st.markdown(latest["content"])
-                    display_results(latest)
+                # NO LONGER NEED TO DISPLAY LATEST RESPONSE HERE
+                # The loop below will handle displaying all messages, including this new one.
 
             else:
                 st.error(f"API Error: {response.text}")
@@ -105,7 +101,7 @@ def main():
         except requests.exceptions.RequestException as e:
             st.error(f"Connection failed: {str(e)}")
 
-    # Display chat history
+    # Display chat history (THIS IS THE ONLY PLACE IT SHOULD BE DONE)
     for msg in st.session_state.chat_history:
         if msg["type"] == "user":
             with st.chat_message("user"):
@@ -113,7 +109,9 @@ def main():
         else:
             with st.chat_message("assistant"):
                 st.markdown(msg["content"])
-                display_results(msg)
+                # Only display results if they exist for assistant messages
+                if "query" in msg and "result" in msg:
+                    display_results(msg)
 
 
 if __name__ == "__main__":
