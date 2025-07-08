@@ -95,5 +95,4 @@ streamlit run frontend.py
 ## **Additional Notes**
 - If any process fails, check logs for errors and restart the respective service.
 
-🚀 Happy Coding!
 
